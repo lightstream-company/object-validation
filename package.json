@@ -1,0 +1,32 @@
+{
+  "name": "valient",
+  "version": "0.1.0",
+  "description": "Yet another Node library to validate an object, with a fluent description api.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --recursive test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lightstream-company/object-validation.git"
+  },
+  "keywords": [
+    "object",
+    "validation",
+    "validate",
+    "validator"
+  ],
+  "author": "Jérôme Avoustin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lightstream-company/object-validation/issues"
+  },
+  "homepage": "https://github.com/lightstream-company/object-validation#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}
