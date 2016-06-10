@@ -74,4 +74,32 @@ describe('simple object behavior', () => {
 
     result.valid.should.be.true;
   });
+
+  it('should have property among a list of values', () => {
+    const validate = anObject()
+      .withProperty('type').which.isAString().among(['twitter', 'facebook', 'instagram']);
+
+    const result = validate({type: 'twitter'});
+
+    result.valid.should.be.true;
+  });
+
+  it('should not be valid when property is not among a list of values', () => {
+    const validate = anObject()
+      .withProperty('type').which.isAString().among(['twitter', 'facebook', 'instagram']);
+
+    const result = validate({type: 'something else'});
+
+    result.valid.should.be.false;
+    result.errors.should.have.length(1);
+  });
+
+  it('should be valid when none of the required properties are provided', () => {
+    const validate = anObject()
+      .requiresOneOf('name', 'type');
+
+    validate({name: 'John'}).valid.should.be.true;
+    validate({type: 'human'}).valid.should.be.true;
+    validate({}).valid.should.be.false;
+  });
 });
