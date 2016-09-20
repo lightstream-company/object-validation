@@ -94,12 +94,39 @@ describe('simple object behavior', () => {
     result.errors.should.have.length(1);
   });
 
-  it('should be valid when none of the required properties are provided', () => {
+  it('should not be valid when none of the required properties are provided', () => {
     const validate = anObject()
       .requiresOneOf('name', 'type');
 
     validate({name: 'John'}).valid.should.be.true;
     validate({type: 'human'}).valid.should.be.true;
     validate({}).valid.should.be.false;
+  });
+
+  it('should have an array as property', () => {
+    const validate = anObject()
+      .withProperty('values').which.isAnArray();
+
+    const result = validate({name: 'meeting', values: [1,2,3]});
+
+    result.valid.should.be.true;
+  });
+
+  it('should have a non empty array as property', () => {
+    const validate = anObject()
+      .withProperty('values').which.isANonEmptyArray();
+
+    const result = validate({name: 'meeting', values: [1,2,3]});
+
+    result.valid.should.be.true;
+  });
+
+  it('should not be valid when the array is empty, when wanting non empty array as property', () => {
+    const validate = anObject()
+      .withProperty('values').which.isANonEmptyArray();
+
+    const result = validate({name: 'meeting', values: []});
+
+    result.valid.should.be.false;
   });
 });

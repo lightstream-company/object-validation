@@ -7,6 +7,7 @@ const should = chai.should();
 const anObject = require('../').anObject;
 const aNumber = require('../').aNumber;
 const aString = require('../').aString;
+const anArray = require('../').anArray;
 const matchRegexp = require('../').matchRegexp;
 
 describe('types validation behavior', () => {
@@ -97,6 +98,23 @@ describe('types validation behavior', () => {
 
     it('should not match Regexp', () => {
       const validate = matchRegexp(/t.*o/g);
+
+      const result = validate('tutu');
+
+      result.valid.should.be.false;
+      result.errors.should.have.length(1);
+    });
+  });
+
+  describe('array', () => {
+    it('should be an array', () => {
+      const validate = anArray();
+
+      validate([]).valid.should.be.true;
+    });
+
+    it('should not be an array', () => {
+      const validate = anArray();
 
       const result = validate('tutu');
 

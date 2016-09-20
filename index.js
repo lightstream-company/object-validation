@@ -25,3 +25,7 @@ module.exports.anEmail = function anEmail() {
 module.exports.aDate = function aDate() {
   return common.validateSingleRule(types.isADate);
 };
+
+module.exports.anArray = function anArray() {
+  return common.validateSingleRule(types.isAnArray);
+};
