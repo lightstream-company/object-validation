@@ -1,6 +1,6 @@
 {
   "name": "valient",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Yet another Node library to validate an object, with a fluent description api.",
   "main": "index.js",
   "directories": {

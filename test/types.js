@@ -47,13 +47,20 @@ describe('types validation behavior', () => {
       result.errors.should.be.empty;
     });
 
-    it('should not be a number when string', () => {
+    it('should be a number when valid string', () => {
       const validate = aNumber();
 
       const result = validate('1');
 
+      result.valid.should.be.true;
+    });
+
+    it('should not be a number when not valid string', () => {
+      const validate = aNumber();
+
+      const result = validate('1a');
+
       result.valid.should.be.false;
-      result.errors.should.have.length(1);
     });
   });
 
